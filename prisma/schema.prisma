@@ -1,0 +1,74 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// ---------------- KULLANICI ----------------
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  name      String
+  createdAt DateTime @default(now())
+  
+  reviews   Review[]
+  alarms    PriceAlarm[]
+}
+
+// ---------------- ANA ÜRÜN ----------------
+model Product {
+  id        String   @id @default(uuid())
+  ean       String   @unique
+  title     String
+  image     String
+  category  String   @default("cep-telefonu") // Kategorizasyon için
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  offers    Offer[]
+  reviews   Review[]
+  alarms    PriceAlarm[]
+}
+
+// ---------------- SATICI TEKLİFLERİ ----------------
+model Offer {
+  id        String   @id @default(uuid())
+  productId String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  vendor    String
+  price     Float
+  priceText String
+  url       String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([productId, vendor])
+}
+
+// ---------------- ÜRÜN YORUMLARI ----------------
+model Review {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  productId String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  rating    Int      // 1 ile 5 arası
+  comment   String
+  createdAt DateTime @default(now())
+}
+
+// ---------------- FİYAT ALARMI ----------------
+model PriceAlarm {
+  id          String   @id @default(uuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  productId   String
+  product     Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  targetPrice Float    // Kullanıcının beklediği hedef fiyat
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+}

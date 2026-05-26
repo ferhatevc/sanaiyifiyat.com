@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<products>
+    <!-- CEP TELEFONU -->
+    <product>
+        <ean>86901230001</ean>
+        <title>Apple iPhone 15 Pro Max 256GB Titanyum</title>
+        <image>/images/iphone.png</image>
+        <category>cep-telefonu</category>
+        <price>71999</price>
+        <vendor>Hepsiburada</vendor>
+        <url>https://www.hepsiburada.com/iphone-15</url>
+    </product>
+    <product>
+        <ean>86901230001</ean>
+        <title>iPhone 15 Pro Max 256 GB Titanyum</title>
+        <image>/images/iphone.png</image>
+        <category>cep-telefonu</category>
+        <price>71500</price>
+        <vendor>Trendyol</vendor>
+        <url>https://www.trendyol.com/iphone-15</url>
+    </product>
+
+    <!-- BİLGİSAYAR -->
+    <product>
+        <ean>86901230004</ean>
+        <title>Apple MacBook Pro M3 Çip 14 inç 8GB 512GB Gümüş</title>
+        <image>/images/macbook.png</image>
+        <category>bilgisayar</category>
+        <price>65999</price>
+        <vendor>Trendyol</vendor>
+        <url>https://www.trendyol.com/macbook-pro</url>
+    </product>
+    <product>
+        <ean>86901230004</ean>
+        <title>MacBook Pro M3 Çip 512GB</title>
+        <image>/images/macbook.png</image>
+        <category>bilgisayar</category>
+        <price>66500</price>
+        <vendor>Vatan Bilgisayar</vendor>
+        <url>https://www.vatanbilgisayar.com/macbook-pro</url>
+    </product>
+
+    <product>
+        <ean>86901230005</ean>
+        <title>Sony PlayStation 5 Oyun Konsolu (İthalatçı Garantili)</title>
+        <image>/images/ps5.png</image>
+        <category>bilgisayar</category>
+        <price>21499</price>
+        <vendor>Amazon Türkiye</vendor>
+        <url>https://www.amazon.com.tr/ps5</url>
+    </product>
+    <product>
+        <ean>86901230005</ean>
+        <title>Sony PS5 Oyun Konsolu 825 GB</title>
+        <image>/images/ps5.png</image>
+        <category>bilgisayar</category>
+        <price>22000</price>
+        <vendor>Hepsiburada</vendor>
+        <url>https://www.hepsiburada.com/ps5</url>
+    </product>
+
+    <!-- EV ALETLERİ -->
+    <product>
+        <ean>86901230002</ean>
+        <title>Dyson V15 Detect Absolute Kablosuz Süpürge</title>
+        <image>/images/dyson.png</image>
+        <category>ev-aletleri</category>
+        <price>28499</price>
+        <vendor>Trendyol</vendor>
+        <url>https://www.trendyol.com/dyson-v15</url>
+    </product>
+    <product>
+        <ean>86901230002</ean>
+        <title>Dyson V15 Detect Dikey Süpürge</title>
+        <image>/images/dyson.png</image>
+        <category>ev-aletleri</category>
+        <price>27999</price>
+        <vendor>Mediamarkt</vendor>
+        <url>https://www.mediamarkt.com.tr/dyson-v15</url>
+    </product>
+
+    <product>
+        <ean>86901230003</ean>
+        <title>Philips Essential Airfryer HD9252/90</title>
+        <image>/images/airfryer.png</image>
+        <category>ev-aletleri</category>
+        <price>3890</price>
+        <vendor>Hepsiburada</vendor>
+        <url>https://www.hepsiburada.com/philips-airfryer</url>
+    </product>
+
+    <product>
+        <ean>86901230006</ean>
+        <title>Nespresso Essenza Mini C30 Siyah Kahve Makinesi</title>
+        <image>/images/nespresso.png</image>
+        <category>ev-aletleri</category>
+        <price>5499</price>
+        <vendor>Nespresso</vendor>
+        <url>https://www.nespresso.com/tr</url>
+    </product>
+    <product>
+        <ean>86901230006</ean>
+        <title>Nespresso Essenza Mini Espresso Makinesi Siyah</title>
+        <image>/images/nespresso.png</image>
+        <category>ev-aletleri</category>
+        <price>5650</price>
+        <vendor>Trendyol</vendor>
+        <url>https://www.trendyol.com/nespresso</url>
+    </product>
+
+    <!-- GİYİM & MODA -->
+    <product>
+        <ean>86901230007</ean>
+        <title>Nike Air Force 1 '07 Beyaz Erkek Spor Ayakkabı</title>
+        <image>/images/nike.png</image>
+        <category>giyim</category>
+        <price>4299</price>
+        <vendor>Nike Türkiye</vendor>
+        <url>https://www.nike.com/tr</url>
+    </product>
+    <product>
+        <ean>86901230007</ean>
+        <title>Nike Air Force 1 Beyaz Sneaker</title>
+        <image>/images/nike.png</image>
+        <category>giyim</category>
+        <price>4150</price>
+        <vendor>SuperStep</vendor>
+        <url>https://www.superstep.com.tr/nike</url>
+    </product>
+
+    <!-- OTO SANAYİ -->
+    <product>
+        <ean>86901230008</ean>
+        <title>Michelin 205/55 R16 91V CrossClimate 2 Dört Mevsim Lastiği</title>
+        <image>/images/michelin.png</image>
+        <category>oto-sanayi</category>
+        <price>3450</price>
+        <vendor>Lastikcim</vendor>
+        <url>https://www.lastikcim.com.tr/michelin</url>
+    </product>
+    <product>
+        <ean>86901230008</ean>
+        <title>Michelin CrossClimate 2 205 55 R16 91V 4 Mevsim</title>
+        <image>/images/michelin.png</image>
+        <category>oto-sanayi</category>
+        <price>3600</price>
+        <vendor>Hepsiburada</vendor>
+        <url>https://www.hepsiburada.com/michelin</url>
+    </product>
+</products>
