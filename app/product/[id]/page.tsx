@@ -4,6 +4,8 @@ import PriceHistoryChart from "@/components/PriceHistoryChart";
 
 const prisma = new PrismaClient();
 
+export const dynamic = 'force-dynamic'; // Build sırasında veritabanı sorgusu yapmasını engeller
+
 export default async function ProductDetailPage({ params }: { params: Promise<{ id: string }> }) {
   // Next.js 15+ için params'ı çözümlüyoruz
   const resolvedParams = await params;

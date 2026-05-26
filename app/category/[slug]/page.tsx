@@ -3,6 +3,8 @@ import Link from "next/link";
 
 const prisma = new PrismaClient();
 
+export const dynamic = 'force-dynamic'; // Build sırasında veritabanı sorgusu yapmasını engeller
+
 export default async function CategoryPage({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params;
   const slug = resolvedParams.slug;
