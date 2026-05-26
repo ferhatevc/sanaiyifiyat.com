@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/response';
+import { NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
@@ -30,7 +30,7 @@ export async function GET() {
         const offers = [];
 
         for (let i = 1; i <= 50000; i++) {
-            const category = categories[i % categories.length];
+            const category = categories[i % categories.length] as keyof typeof brands;
             const categoryBrands = brands[category];
             const brand = categoryBrands[i % categoryBrands.length];
             
