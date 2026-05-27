@@ -17,6 +17,7 @@ model User {
   
   reviews   Review[]
   alarms    PriceAlarm[]
+  favorites Favorite[]
 }
 
 // ---------------- ANA ÜRÜN ----------------
@@ -25,13 +26,20 @@ model Product {
   ean       String   @unique
   title     String
   image     String
-  category  String   @default("cep-telefonu") // Kategorizasyon için
+  category  String   @default("cep-telefonu")
+  brand     String   @default("")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   
-  offers    Offer[]
-  reviews   Review[]
-  alarms    PriceAlarm[]
+  offers       Offer[]
+  reviews      Review[]
+  alarms       PriceAlarm[]
+  priceHistory PriceHistory[]
+  favorites    Favorite[]
+
+  @@index([category])
+  @@index([title])
+  @@index([brand])
 }
 
 // ---------------- SATICI TEKLİFLERİ ----------------
@@ -71,6 +79,30 @@ model PriceAlarm {
   targetPrice Float    // Kullanıcının beklediği hedef fiyat
   isActive    Boolean  @default(true)
   createdAt   DateTime @default(now())
+}
+
+// ---------------- FİYAT GEÇMİŞİ ----------------
+model PriceHistory {
+  id        String   @id @default(uuid())
+  productId String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  vendor    String
+  price     Float
+  date      DateTime @default(now())
+
+  @@index([productId, date])
+}
+
+// ---------------- FAVORİLER ----------------
+model Favorite {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  productId String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@unique([userId, productId])
 }
 
 // ---------------- XML BOT ENTEGRASYONU ----------------

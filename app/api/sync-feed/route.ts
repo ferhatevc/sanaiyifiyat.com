@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/lib/prisma";
 import { XMLParser } from "fast-xml-parser";
 import axios from "axios";
 
-const prisma = new PrismaClient();
+
 export const dynamic = 'force-dynamic';
 
 export async function POST(request: Request) {

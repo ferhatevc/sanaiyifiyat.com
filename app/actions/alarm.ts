@@ -1,9 +1,7 @@
 "use server";
 
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/lib/prisma";
 import { getSession } from "@/lib/session";
-
-const prisma = new PrismaClient();
 
 export async function createPriceAlarm(productId: string, targetPrice: number) {
   const session = await getSession();

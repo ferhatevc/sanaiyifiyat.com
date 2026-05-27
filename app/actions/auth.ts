@@ -1,11 +1,10 @@
 "use server";
 
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/lib/prisma";
 import bcrypt from "bcryptjs";
 import { createSession, deleteSession } from "@/lib/session";
 import { redirect } from "next/navigation";
 
-const prisma = new PrismaClient();
 
 export async function registerUser(formData: FormData) {
   const name = formData.get("name") as string;

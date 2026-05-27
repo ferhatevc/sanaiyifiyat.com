@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
-import { PrismaClient } from '@prisma/client';
+import { prisma } from '@/lib/prisma';
 
-const prisma = new PrismaClient();
+
 const baseUrl = 'https://sanaiyifiyat.com';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -34,7 +34,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   try {
     // Kategorileri veritabanından çek ve haritaya ekle
-    const categories = await prisma.category.findMany({ select: { slug: true } });
+    const categoriesRaw = await prisma.product.findMany({ select: { category: true }, distinct: ['category'] });
+    const categories = categoriesRaw.map(c => ({ slug: c.category }));
     categories.forEach((cat) => {
       sitemapData.push({
         url: `${baseUrl}/category/${cat.slug}`,

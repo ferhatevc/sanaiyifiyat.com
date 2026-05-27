@@ -1,9 +1,7 @@
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import PriceHistoryChart from "@/components/PriceHistoryChart";
 import PriceAlarmButton from "@/components/PriceAlarmButton";
-
-const prisma = new PrismaClient();
 
 export const dynamic = 'force-dynamic'; // Build sırasında veritabanı sorgusu yapmasını engeller
 

@@ -1,7 +1,5 @@
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/lib/prisma";
 import { redirect } from "next/navigation";
-
-const prisma = new PrismaClient();
 
 export default async function GoToVendorPage({ params }: { params: Promise<{ offerId: string }> }) {
     const resolvedParams = await params;
