@@ -2,8 +2,11 @@ import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import PriceHistoryChart from "@/components/PriceHistoryChart";
 import PriceAlarmButton from "@/components/PriceAlarmButton";
+import FavoriteButton from "@/components/FavoriteButton";
+import PricePrediction from "@/components/PricePrediction";
+import { getSession } from "@/lib/session";
 
-export const dynamic = 'force-dynamic'; // Build sırasında veritabanı sorgusu yapmasını engeller
+export const dynamic = 'force-dynamic';
 
 export default async function ProductDetailPage({ params }: { params: Promise<{ id: string }> }) {
   // Next.js 15+ için params'ı çözümlüyoruz
@@ -35,6 +38,16 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
     price: h.price,
     vendor: h.vendor
   })) : [];
+
+  // Favori durumunu kontrol et
+  const session = await getSession();
+  let isFavorited = false;
+  if (session?.userId && product) {
+    const fav = await prisma.favorite.findUnique({
+      where: { userId_productId: { userId: session.userId as string, productId: product.id } }
+    });
+    isFavorited = !!fav;
+  }
 
   if (!product) {
     return (
@@ -87,10 +100,11 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
           
           <div style={{marginTop: '20px', display: 'flex', gap: '10px', justifyContent: 'center'}}>
               <PriceAlarmButton productId={product.id} currentPrice={sellers.length > 0 ? sellers[0].price : 0} />
-              <button style={{padding: '10px 15px', border: '1px solid #ddd', backgroundColor: '#fff', borderRadius: '8px', cursor: 'pointer', color: '#333'}}>
-                  <i className="fa-regular fa-heart"></i> Favoriye Al
-              </button>
+              <FavoriteButton productId={product.id} isFavorited={isFavorited} />
           </div>
+          
+          {/* AI FİYAT TAHMİNİ */}
+          <PricePrediction currentPrice={sellers.length > 0 ? sellers[0].price : 0} priceHistory={priceHistoryData} />
           
           {/* FİYAT GEÇMİŞİ GRAFİĞİ */}
           <PriceHistoryChart currentPrice={sellers.length > 0 ? sellers[0].price : 0} priceHistory={priceHistoryData} />

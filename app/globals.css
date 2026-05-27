@@ -430,17 +430,136 @@ footer {
         grid-template-columns: 1fr 1fr;
     }
 }
+
 @media (max-width: 768px) {
     .header-container {
-        flex-direction: column;
+        flex-wrap: wrap;
         height: auto;
-        padding: 16px 0;
-        gap: 16px;
+        padding: 12px 0;
+        gap: 10px;
     }
+
+    .header-nav {
+        display: none;
+    }
+
+    .mobile-menu-btn {
+        display: block !important;
+    }
+
+    .search-bar {
+        order: 3;
+        width: 100%;
+        max-width: 100%;
+        flex-basis: 100%;
+    }
+
+    .search-bar input {
+        font-size: 14px;
+        padding: 10px 14px;
+    }
+
+    .hero-section {
+        padding: 40px 0 30px;
+    }
+
     .hero-content h1 {
-        font-size: 36px;
+        font-size: 28px;
+        letter-spacing: -0.5px;
     }
+
+    .hero-content p {
+        font-size: 15px;
+        margin-bottom: 24px;
+    }
+
+    .popular-searches {
+        gap: 8px;
+    }
+
+    .badge {
+        padding: 6px 14px;
+        font-size: 13px;
+    }
+
+    .categories-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+    }
+
+    .category-card {
+        padding: 20px 8px;
+    }
+
+    .cat-icon {
+        font-size: 28px;
+        margin-bottom: 10px;
+    }
+
+    .category-card h3 {
+        font-size: 13px;
+    }
+
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .product-card {
+        padding: 12px;
+    }
+
+    .product-img {
+        height: 140px;
+    }
+
+    .product-title {
+        font-size: 14px;
+        -webkit-line-clamp: 2;
+    }
+
+    .current-price {
+        font-size: 18px;
+    }
+
+    .compare-btn {
+        padding: 10px;
+        font-size: 13px;
+    }
+
     .footer-content {
         grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    footer {
+        padding: 40px 0 20px;
+    }
+
+    .categories-section h2, .trending-section h2 {
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 20px;
+    }
+
+    .logo-icon {
+        font-size: 22px;
+    }
+
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .categories-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero-content h1 {
+        font-size: 24px;
     }
 }

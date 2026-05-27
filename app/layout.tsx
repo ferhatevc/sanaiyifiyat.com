@@ -15,6 +15,7 @@ export const metadata: Metadata = {
 
 import { getSession } from "@/lib/session";
 import LogoutButton from "@/components/LogoutButton";
+import MobileMenu from "@/components/MobileMenu";
 
 export default async function RootLayout({
   children,
@@ -50,6 +51,7 @@ export default async function RootLayout({
                       <Link href="/login" className="nav-link"><i className="fa-regular fa-user"></i> Giriş Yap</Link>
                     )}
                 </nav>
+                <MobileMenu />
             </div>
         </header>
 
