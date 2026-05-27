@@ -6,8 +6,11 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Sana İyi Fiyat - En Ucuzunu Bul!",
+  title: "Sana İyi Fiyat - En Ucuzunu Bul",
   description: "Türkiye'nin en gelişmiş, modern ve hızlı fiyat karşılaştırma platformu.",
+  other: {
+    "verify-admitad": "12669fb7d1"
+  }
 };
 
 import { getSession } from "@/lib/session";
