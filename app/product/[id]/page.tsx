@@ -1,6 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import Link from "next/link";
 import PriceHistoryChart from "@/components/PriceHistoryChart";
+import PriceAlarmButton from "@/components/PriceAlarmButton";
 
 const prisma = new PrismaClient();
 
@@ -70,9 +71,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
           </div>
           
           <div style={{marginTop: '20px', display: 'flex', gap: '10px', justifyContent: 'center'}}>
-              <button style={{padding: '10px 15px', border: '1px solid #ddd', backgroundColor: '#fff', borderRadius: '8px', cursor: 'pointer', color: '#333'}}>
-                  <i className="fa-regular fa-bell"></i> Fiyat Alarmı Kur
-              </button>
+              <PriceAlarmButton productId={product.id} currentPrice={sellers.length > 0 ? sellers[0].price : 0} />
               <button style={{padding: '10px 15px', border: '1px solid #ddd', backgroundColor: '#fff', borderRadius: '8px', cursor: 'pointer', color: '#333'}}>
                   <i className="fa-regular fa-heart"></i> Favoriye Al
               </button>

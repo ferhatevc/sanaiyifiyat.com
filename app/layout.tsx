@@ -10,11 +10,16 @@ export const metadata: Metadata = {
   description: "Türkiye'nin en gelişmiş, modern ve hızlı fiyat karşılaştırma platformu.",
 };
 
-export default function RootLayout({
+import { getSession } from "@/lib/session";
+import LogoutButton from "@/components/LogoutButton";
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await getSession();
+
   return (
     <html lang="tr">
       <head>
@@ -33,7 +38,14 @@ export default function RootLayout({
                 </form>
                 <nav className="header-nav">
                     <Link href="#" className="nav-link"><i className="fa-regular fa-bell"></i> Fiyat Alarmlarım</Link>
-                    <Link href="#" className="nav-link"><i className="fa-regular fa-user"></i> Giriş Yap</Link>
+                    {session ? (
+                      <div style={{display: 'flex', alignItems: 'center', gap: '15px'}}>
+                        <span style={{color: '#fff', fontSize: '14px'}}><i className="fa-regular fa-circle-user"></i> {session.name}</span>
+                        <LogoutButton />
+                      </div>
+                    ) : (
+                      <Link href="/login" className="nav-link"><i className="fa-regular fa-user"></i> Giriş Yap</Link>
+                    )}
                 </nav>
             </div>
         </header>
