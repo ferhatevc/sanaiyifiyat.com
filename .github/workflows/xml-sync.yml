@@ -1,0 +1,17 @@
+name: Nightly XML Bot Sync
+
+on:
+  schedule:
+    # Her gece UTC 03:00 (Türkiye saatiyle 06:00) çalışır.
+    - cron: '0 3 * * *'
+  workflow_dispatch: # GitHub panelinden manuel çalıştırmaya da izin verir
+
+jobs:
+  sync-bot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Sana İyi Fiyat XML Botunu Tetikle"
+        run: |
+          echo "XML Botu çalıştırılıyor..."
+          curl -X POST https://sanaiyifiyat.com/api/sync-feed
+          echo "XML Botu görevini tamamladı!"
