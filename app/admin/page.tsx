@@ -5,12 +5,20 @@ const prisma = new PrismaClient();
 export const dynamic = 'force-dynamic';
 
 export default async function AdminPage() {
-  const feeds = await prisma.affiliateFeed.findMany({
-    orderBy: { createdAt: "desc" }
-  });
+  let feeds = [];
+  let productCount = 0;
+  let offerCount = 0;
+  let dbError = "";
 
-  const productCount = await prisma.product.count();
-  const offerCount = await prisma.offer.count();
+  try {
+    feeds = await prisma.affiliateFeed.findMany({
+      orderBy: { createdAt: "desc" }
+    });
+    productCount = await prisma.product.count();
+    offerCount = await prisma.offer.count();
+  } catch (error: any) {
+    dbError = error.message || error.toString();
+  }
 
   // Server Action: Yeni Feed Ekle
   async function addFeed(formData: FormData) {
@@ -39,6 +47,13 @@ export default async function AdminPage() {
     <div>
       <h1 style={{ fontSize: "28px", fontWeight: "bold", marginBottom: "20px", color: "#111" }}>XML Entegrasyon Paneli</h1>
       
+      {dbError && (
+        <div style={{ backgroundColor: "#fee2e2", color: "#991b1b", padding: "20px", borderRadius: "10px", marginBottom: "20px", border: "1px solid #f87171", fontFamily: "monospace", whiteSpace: "pre-wrap" }}>
+          <strong>Veritabanı Hatası (Sistem Çöktü):</strong><br/>
+          {dbError}
+        </div>
+      )}
+
       <div style={{ display: "flex", gap: "20px", marginBottom: "40px" }}>
         <div style={{ backgroundColor: "white", padding: "20px", borderRadius: "10px", boxShadow: "0 2px 10px rgba(0,0,0,0.05)", flex: 1 }}>
           <h3 style={{ margin: "0 0 10px 0", color: "#666" }}>Toplam Ürün</h3>
