@@ -72,3 +72,14 @@ model PriceAlarm {
   isActive    Boolean  @default(true)
   createdAt   DateTime @default(now())
 }
+
+// ---------------- XML BOT ENTEGRASYONU ----------------
+model AffiliateFeed {
+  id          String   @id @default(uuid())
+  name        String   // Örn: "GelirOrtakları Trendyol Feed"
+  url         String   @db.Text // XML'in indirileceği URL
+  vendor      String   // XML'den gelen ürünlerin hangi satıcıya (Örn: Trendyol) ait olacağı
+  lastSyncAt  DateTime? // Botun en son ne zaman başarılı çalıştığı
+  status      String   @default("idle") // "idle", "syncing", "error"
+  createdAt   DateTime @default(now())
+}
