@@ -11,13 +11,13 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
         </h2>
         
         <nav style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-          <Link href="/admin" style={{ color: "#ccc", textDecoration: "none", padding: "10px", borderRadius: "5px", transition: "0.2s" }} onMouseOver={e => e.currentTarget.style.backgroundColor = "#333"} onMouseOut={e => e.currentTarget.style.backgroundColor = "transparent"}>
+          <Link href="/admin" style={{ color: "#ccc", textDecoration: "none", padding: "10px", borderRadius: "5px", transition: "0.2s" }}>
             Dashboard
           </Link>
-          <Link href="/admin" style={{ color: "#ccc", textDecoration: "none", padding: "10px", borderRadius: "5px", transition: "0.2s" }} onMouseOver={e => e.currentTarget.style.backgroundColor = "#333"} onMouseOut={e => e.currentTarget.style.backgroundColor = "transparent"}>
+          <Link href="/admin" style={{ color: "#ccc", textDecoration: "none", padding: "10px", borderRadius: "5px", transition: "0.2s" }}>
             XML Bot (Affiliate)
           </Link>
-          <Link href="/" style={{ color: "#ccc", textDecoration: "none", padding: "10px", borderRadius: "5px", transition: "0.2s", marginTop: "20px", borderTop: "1px solid #333", paddingTop: "20px" }} onMouseOver={e => e.currentTarget.style.backgroundColor = "#333"} onMouseOut={e => e.currentTarget.style.backgroundColor = "transparent"}>
+          <Link href="/" style={{ color: "#ccc", textDecoration: "none", padding: "10px", borderRadius: "5px", transition: "0.2s", marginTop: "20px", borderTop: "1px solid #333", paddingTop: "20px" }}>
             ← Siteye Dön
           </Link>
         </nav>
