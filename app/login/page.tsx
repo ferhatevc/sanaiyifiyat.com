@@ -2,10 +2,12 @@
 import { useState } from "react";
 import Link from "next/link";
 import { loginUser } from "@/app/actions/auth";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   async function handleSubmit(formData: FormData) {
     setIsLoading(true);
@@ -13,8 +15,11 @@ export default function LoginPage() {
     const result = await loginUser(formData);
     if (result?.error) {
       setError(result.error);
+      setIsLoading(false);
+    } else if (result?.success) {
+      router.push("/");
+      router.refresh(); // Refresh to update layout state
     }
-    setIsLoading(false);
   }
 
   return (

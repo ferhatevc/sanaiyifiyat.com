@@ -38,8 +38,7 @@ export async function registerUser(formData: FormData) {
   // Oturum oluştur
   await createSession(user.id, user.name);
 
-  // Anasayfaya yönlendir
-  redirect("/");
+  return { success: true };
 }
 
 export async function loginUser(formData: FormData) {
@@ -65,8 +64,7 @@ export async function loginUser(formData: FormData) {
   // Oturum oluştur
   await createSession(user.id, user.name);
 
-  // Anasayfaya yönlendir
-  redirect("/");
+  return { success: true };
 }
 
 export async function logoutUser() {
