@@ -15,7 +15,7 @@ export async function GET() {
       {
         ean: "194253134123",
         title: "Apple iPhone 15 Pro Max 256GB Natürel Titanyum",
-        image: "https://images.unsplash.com/photo-1696446701796-da61225697cc?auto=format&fit=crop&w=600&q=80",
+        image: "/images/iphone.png",
         category: "cep-telefonu",
         offers: [
           { vendor: "Hepsiburada", price: 74999, priceText: "74.999 TL", url: "#" },
@@ -26,7 +26,7 @@ export async function GET() {
       {
         ean: "502515505321",
         title: "Dyson V15 Detect Absolute Şarjlı Dik Süpürge",
-        image: "https://images.unsplash.com/photo-1558089687-f282ffcbc126?auto=format&fit=crop&w=600&q=80",
+        image: "/images/dyson.png",
         category: "ev-aletleri",
         offers: [
           { vendor: "MediaMarkt", price: 24999, priceText: "24.999 TL", url: "#" },
@@ -37,7 +37,7 @@ export async function GET() {
       {
         ean: "711719541234",
         title: "Sony PlayStation 5 Oyun Konsolu 825GB",
-        image: "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?auto=format&fit=crop&w=600&q=80",
+        image: "/images/ps5.png",
         category: "ev-yasam",
         offers: [
           { vendor: "Vatan", price: 19999, priceText: "19.999 TL", url: "#" },
@@ -48,7 +48,7 @@ export async function GET() {
       {
         ean: "871010393214",
         title: "Philips Airfryer XXL Premium Fritöz (HD9867/90)",
-        image: "https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=600&q=80",
+        image: "/images/airfryer.png",
         category: "ev-aletleri",
         offers: [
           { vendor: "Trendyol", price: 6499, priceText: "6.499 TL", url: "#" },
@@ -59,7 +59,7 @@ export async function GET() {
       {
         ean: "352870123456",
         title: "Michelin Primacy 4 205/55 R16 91V Yaz Lastiği",
-        image: "https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=600&q=80",
+        image: "/images/michelin.png",
         category: "oto-sanayi",
         offers: [
           { vendor: "Lastikcim", price: 2150, priceText: "2.150 TL", url: "#" },
@@ -69,35 +69,35 @@ export async function GET() {
       },
       {
         ean: "880609012345",
-        title: "Samsung Galaxy S24 Ultra 512GB Titanyum Gri",
-        image: "https://images.unsplash.com/photo-1610945265064-3234dac15059?auto=format&fit=crop&w=600&q=80",
-        category: "cep-telefonu",
+        title: "Apple MacBook Pro M3 Çip 14 inç Uzay Siyahı",
+        image: "/images/macbook.png",
+        category: "bilgisayar",
         offers: [
           { vendor: "Amazon", price: 69999, priceText: "69.999 TL", url: "#" },
-          { vendor: "Samsung TR", price: 73999, priceText: "73.999 TL", url: "#" },
+          { vendor: "Apple TR", price: 73999, priceText: "73.999 TL", url: "#" },
           { vendor: "Trendyol", price: 68500, priceText: "68.500 TL", url: "#" }
         ]
       },
       {
         ean: "195348123456",
-        title: "Lenovo IdeaPad Slim 3 Intel Core i5 16GB RAM",
-        image: "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&w=600&q=80",
-        category: "bilgisayar",
+        title: "Nike Air Force 1 '07 Beyaz Erkek Spor Ayakkabı",
+        image: "/images/nike.png",
+        category: "giyim",
         offers: [
-          { vendor: "Teknosa", price: 14999, priceText: "14.999 TL", url: "#" },
-          { vendor: "Hepsiburada", price: 13499, priceText: "13.499 TL", url: "#" },
-          { vendor: "Amazon", price: 13999, priceText: "13.999 TL", url: "#" }
+          { vendor: "Nike TR", price: 4499, priceText: "4.499 TL", url: "#" },
+          { vendor: "Hepsiburada", price: 4299, priceText: "4.299 TL", url: "#" },
+          { vendor: "SuperStep", price: 4499, priceText: "4.499 TL", url: "#" }
         ]
       },
       {
         ean: "190199123456",
-        title: "Apple AirPods Pro (2. Nesil) Bluetooth Kulaklık",
-        image: "https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?auto=format&fit=crop&w=600&q=80",
-        category: "cep-telefonu",
+        title: "Nespresso Essenza Mini Kahve Makinesi",
+        image: "/images/nespresso.png",
+        category: "ev-aletleri",
         offers: [
-          { vendor: "Amazon", price: 7499, priceText: "7.499 TL", url: "#" },
-          { vendor: "Trendyol", price: 7299, priceText: "7.299 TL", url: "#" },
-          { vendor: "Apple TR", price: 8999, priceText: "8.999 TL", url: "#" }
+          { vendor: "Amazon", price: 4499, priceText: "4.499 TL", url: "#" },
+          { vendor: "Trendyol", price: 4299, priceText: "4.299 TL", url: "#" },
+          { vendor: "Nespresso TR", price: 4999, priceText: "4.999 TL", url: "#" }
         ]
       }
     ];
