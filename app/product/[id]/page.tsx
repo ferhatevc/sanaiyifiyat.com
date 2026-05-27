@@ -15,9 +15,26 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
     include: {
         offers: {
             orderBy: { price: 'asc' }
-        }
+        },
+        reviews: {
+            include: { user: { select: { name: true } } },
+            orderBy: { createdAt: 'desc' },
+            take: 20
+        },
+        priceHistory: {
+            orderBy: { date: 'desc' },
+            take: 365
+        },
+        _count: { select: { reviews: true, offers: true } }
     }
   });
+
+  // Fiyat geçmişini chart formatına çevir
+  const priceHistoryData = product ? product.priceHistory.map((h: any) => ({
+    date: h.date.toISOString(),
+    price: h.price,
+    vendor: h.vendor
+  })) : [];
 
   if (!product) {
     return (
@@ -75,8 +92,8 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
               </button>
           </div>
           
-          {/* FİYAT GEÇMİŞİ GRAFİĞİ (AŞAMA 5) */}
-          <PriceHistoryChart currentPrice={sellers.length > 0 ? sellers[0].price : 0} />
+          {/* FİYAT GEÇMİŞİ GRAFİĞİ */}
+          <PriceHistoryChart currentPrice={sellers.length > 0 ? sellers[0].price : 0} priceHistory={priceHistoryData} />
         </div>
 
         {/* Sağ Taraf: Fiyat Kıyaslama Listesi (Para Kazandıran Kısım) */}
@@ -126,39 +143,52 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
 
       </div>
 
-      {/* Ürün Yorumları ve Değerlendirmeler (AŞAMA 5) */}
+      {/* Ürün Yorumları ve Değerlendirmeler */}
       <div style={{marginTop: '50px', padding: '30px', backgroundColor: '#1a1a1a', borderRadius: '16px'}}>
-          <h2 style={{marginBottom: '20px', borderBottom: '1px solid #333', paddingBottom: '10px'}}>Kullanıcı Değerlendirmeleri</h2>
-          <div style={{display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '20px'}}>
-              <div style={{color: '#f5c518', fontSize: '20px'}}>
-                  <i className="fa-solid fa-star"></i>
-                  <i className="fa-solid fa-star"></i>
-                  <i className="fa-solid fa-star"></i>
-                  <i className="fa-solid fa-star"></i>
-                  <i className="fa-regular fa-star-half-stroke"></i>
-              </div>
-              <span style={{fontSize: '18px', fontWeight: 'bold'}}>4.5</span>
-              <span style={{color: '#aaa'}}>(2 Değerlendirme)</span>
-          </div>
+          <h2 style={{marginBottom: '20px', borderBottom: '1px solid #333', paddingBottom: '10px'}}>
+              Kullanıcı Değerlendirmeleri
+              <span style={{fontSize: '14px', fontWeight: 'normal', color: '#aaa', marginLeft: '10px'}}>({product._count.reviews} yorum)</span>
+          </h2>
           
-          <div style={{marginBottom: '30px', display: 'flex', flexDirection: 'column', gap: '15px'}}>
-              <div style={{padding: '15px', backgroundColor: '#222', borderRadius: '8px'}}>
-                  <div style={{display: 'flex', justifyContent: 'space-between', marginBottom: '10px'}}>
-                      <strong>Ahmet Y.</strong> <span style={{color: '#aaa', fontSize: '12px'}}>3 gün önce</span>
-                  </div>
-                  <div style={{color: '#f5c518', fontSize: '12px', marginBottom: '10px'}}>
-                      <i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i>
-                  </div>
-                  <p style={{color: '#ddd', margin: 0}}>Ürün harika, SanaiyiFiyat üzerinden en uygun satıcıyı bulup aldım, ertesi gün kargolandı.</p>
-              </div>
-          </div>
+          {product.reviews.length > 0 ? (
+            <div style={{marginBottom: '30px', display: 'flex', flexDirection: 'column', gap: '15px'}}>
+              {product.reviews.map((review: any) => (
+                <div key={review.id} style={{padding: '15px', backgroundColor: '#222', borderRadius: '8px'}}>
+                    <div style={{display: 'flex', justifyContent: 'space-between', marginBottom: '10px'}}>
+                        <strong>{review.user.name}</strong>
+                        <span style={{color: '#aaa', fontSize: '12px'}}>{new Date(review.createdAt).toLocaleDateString('tr-TR')}</span>
+                    </div>
+                    <div style={{color: '#f5c518', fontSize: '12px', marginBottom: '10px'}}>
+                        {Array.from({length: 5}, (_, i) => (
+                            <i key={i} className={i < review.rating ? 'fa-solid fa-star' : 'fa-regular fa-star'}></i>
+                        ))}
+                    </div>
+                    <p style={{color: '#ddd', margin: 0}}>{review.comment}</p>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p style={{color: '#888', marginBottom: '20px'}}>Henüz yorum yapılmamış. İlk yorumu siz yapın!</p>
+          )}
 
           <div style={{padding: '20px', backgroundColor: '#222', borderRadius: '8px', border: '1px solid #333'}}>
               <h4 style={{marginBottom: '15px', display: 'flex', alignItems: 'center', gap: '10px'}}>
                   <i className="fa-regular fa-comment"></i> Yorum Ekle
               </h4>
-              <textarea placeholder="Bu ürün hakkındaki düşünceleriniz nelerdir? (Yorum yapabilmek için giriş yapmalısınız)" style={{width: '100%', minHeight: '100px', padding: '15px', borderRadius: '8px', backgroundColor: '#111', color: '#fff', border: '1px solid #444', marginBottom: '15px', fontFamily: 'inherit'}} disabled></textarea>
-              <button className="compare-btn" style={{border: 'none', cursor: 'not-allowed', padding: '10px 20px', opacity: 0.5}}>Giriş Yap ve Gönder</button>
+              <form action={`/api/review`} method="POST">
+                  <input type="hidden" name="productId" value={product.id} />
+                  <div style={{display: 'flex', gap: '5px', marginBottom: '15px'}}>
+                      {[1,2,3,4,5].map(star => (
+                          <label key={star} style={{cursor: 'pointer'}}>
+                              <input type="radio" name="rating" value={star} style={{display: 'none'}} />
+                              <i className="fa-solid fa-star" style={{fontSize: '24px', color: '#444'}}></i>
+                          </label>
+                      ))}
+                  </div>
+                  <textarea name="comment" placeholder="Bu ürün hakkındaki düşünceleriniz nelerdir?" 
+                    style={{width: '100%', minHeight: '100px', padding: '15px', borderRadius: '8px', backgroundColor: '#111', color: '#fff', border: '1px solid #444', marginBottom: '15px', fontFamily: 'inherit'}}></textarea>
+                  <button type="submit" className="compare-btn" style={{border: 'none', cursor: 'pointer', padding: '10px 20px'}}>Gönder</button>
+              </form>
           </div>
       </div>
 

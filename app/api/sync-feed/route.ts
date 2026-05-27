@@ -95,6 +95,12 @@ export async function POST(request: Request) {
             update: { price, priceText, url, updatedAt: new Date() },
             create: { productId: product.id, vendor: feed.vendor, price, priceText, url }
         });
+
+        // FAZ 2: Fiyat geçmişini kaydet (gerçek grafik verisi)
+        await prisma.priceHistory.create({
+            data: { productId: product.id, vendor: feed.vendor, price }
+        });
+
         newOffers++;
     }
 
