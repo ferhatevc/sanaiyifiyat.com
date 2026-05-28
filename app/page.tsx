@@ -29,10 +29,11 @@ export default async function Home() {
                   
                   <div className="popular-searches">
                       <span>Popüler Aramalar:</span>
-                      <Link href="#" className="badge">Airfryer</Link>
-                      <Link href="#" className="badge">iPhone 15 Pro</Link>
-                      <Link href="#" className="badge">Robot Süpürge</Link>
-                      <Link href="#" className="badge">PS5</Link>
+                      <Link href="/en-ucuz/airfryer" className="badge">Airfryer</Link>
+                      <Link href="/en-ucuz/iphone" className="badge">iPhone</Link>
+                      <Link href="/en-ucuz/robot-süpürge" className="badge">Robot Süpürge</Link>
+                      <Link href="/en-ucuz/laptop" className="badge">Laptop</Link>
+                      <Link href="/en-ucuz/televizyon" className="badge">Televizyon</Link>
                   </div>
               </div>
           </section>
@@ -104,6 +105,19 @@ export default async function Home() {
                   ) : (
                       <p>Ürünler yükleniyor veya bot çalıştırılmadı...</p>
                   )}
+              </div>
+          </section>
+
+          {/* Popüler Markalar - SEO iç linkleme */}
+          <section style={{marginBottom: '60px'}}>
+              <h2 style={{fontSize: '28px', fontWeight: '800', marginBottom: '24px', letterSpacing: '-0.5px'}}>Popüler Markalar</h2>
+              <div style={{display: 'flex', gap: '12px', flexWrap: 'wrap'}}>
+                  {['Apple', 'Samsung', 'Xiaomi', 'Dyson', 'LG', 'Sony', 'Bosch', 'Philips', 'HP', 'Lenovo', 'Asus', 'Huawei'].map(brand => (
+                      <Link key={brand} href={`/brand/${brand.toLowerCase()}`}
+                          style={{padding: '10px 20px', borderRadius: '999px', backgroundColor: '#fff', border: '1px solid #e0e0e0', textDecoration: 'none', color: '#121212', fontWeight: '500', fontSize: '14px', transition: 'all 0.2s', boxShadow: '0 1px 2px rgba(0,0,0,0.05)'}}>
+                          {brand}
+                      </Link>
+                  ))}
               </div>
           </section>
       </main>
