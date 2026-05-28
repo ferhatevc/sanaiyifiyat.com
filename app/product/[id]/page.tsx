@@ -4,6 +4,7 @@ import PriceHistoryChart from "@/components/PriceHistoryChart";
 import PriceAlarmButton from "@/components/PriceAlarmButton";
 import FavoriteButton from "@/components/FavoriteButton";
 import PricePrediction from "@/components/PricePrediction";
+import ShareButton from "@/components/ShareButton";
 import { getSession } from "@/lib/session";
 
 export const dynamic = 'force-dynamic';
@@ -77,10 +78,38 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
   });
 
   const cheapestOfferText = sellers.length > 0 ? sellers[0].priceText : "Fiyat Bulunamadı";
+  const avgRating = product.reviews.length > 0 ? (product.reviews.reduce((acc: number, r: any) => acc + r.rating, 0) / product.reviews.length).toFixed(1) : null;
+
+  // JSON-LD Schema.org Product markup (Google zengin sonuçlar için)
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": product.title,
+    "image": product.image,
+    "description": `${product.title} - ${sellers.length} satıcıdan fiyat karşılaştırması. En ucuz fiyat: ${cheapestOfferText}`,
+    ...(avgRating && {
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": avgRating,
+        "reviewCount": product._count.reviews
+      }
+    }),
+    "offers": {
+      "@type": "AggregateOffer",
+      "lowPrice": sellers.length > 0 ? sellers[0].price : 0,
+      "highPrice": sellers.length > 0 ? sellers[sellers.length - 1].price : 0,
+      "priceCurrency": "TRY",
+      "offerCount": sellers.length,
+      "availability": "https://schema.org/InStock"
+    }
+  };
 
   return (
     <main className="custom-container" style={{paddingTop: '20px', paddingBottom: '60px'}}>
       
+      {/* JSON-LD Schema Markup */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify(jsonLd)}} />
+
       {/* Geri Dönüş Linki */}
       <Link href="/" style={{color: '#aaa', textDecoration: 'none', display: 'inline-block', marginBottom: '20px'}}>
           <i className="fa-solid fa-arrow-left"></i> Sonuçlara Dön
@@ -108,6 +137,9 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
           
           {/* FİYAT GEÇMİŞİ GRAFİĞİ */}
           <PriceHistoryChart currentPrice={sellers.length > 0 ? sellers[0].price : 0} priceHistory={priceHistoryData} />
+
+          {/* SOSYAL PAYLAŞIM */}
+          <ShareButton title={product.title} url={`https://sanaiyifiyat.com/product/${product.id}`} />
         </div>
 
         {/* Sağ Taraf: Fiyat Kıyaslama Listesi (Para Kazandıran Kısım) */}

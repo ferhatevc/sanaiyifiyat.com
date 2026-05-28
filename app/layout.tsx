@@ -16,6 +16,7 @@ export const metadata: Metadata = {
 import { getSession } from "@/lib/session";
 import LogoutButton from "@/components/LogoutButton";
 import MobileMenu from "@/components/MobileMenu";
+import CompareBar from "@/components/CompareBar";
 
 export default async function RootLayout({
   children,
@@ -56,6 +57,8 @@ export default async function RootLayout({
         </header>
 
         {children}
+
+        <CompareBar />
 
         <footer>
             <div className="custom-container footer-content">
