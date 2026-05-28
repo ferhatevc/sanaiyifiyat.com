@@ -8,8 +8,16 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Sana İyi Fiyat - En Ucuzunu Bul",
   description: "Türkiye'nin en gelişmiş, modern ve hızlı fiyat karşılaştırma platformu.",
+  manifest: "/manifest.json",
+  themeColor: "#E50914",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "SanaİyiFiyat",
+  },
   other: {
-    "verify-admitad": "12669fb7d1"
+    "verify-admitad": "12669fb7d1",
+    "mobile-web-app-capable": "yes",
   }
 };
 
@@ -17,6 +25,7 @@ import { getSession } from "@/lib/session";
 import LogoutButton from "@/components/LogoutButton";
 import MobileMenu from "@/components/MobileMenu";
 import CompareBar from "@/components/CompareBar";
+import PWAInstallPrompt from "@/components/PWAInstallPrompt";
 
 export default async function RootLayout({
   children,
@@ -29,6 +38,9 @@ export default async function RootLayout({
     <html lang="tr">
       <head>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+        <link rel="apple-touch-icon" href="/icon-192x192.png" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
       </head>
       <body className={inter.className}>
         <header className="glass-header">
@@ -59,6 +71,7 @@ export default async function RootLayout({
         {children}
 
         <CompareBar />
+        <PWAInstallPrompt />
 
         <footer>
             <div className="custom-container footer-content">
