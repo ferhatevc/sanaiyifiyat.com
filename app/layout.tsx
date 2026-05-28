@@ -46,6 +46,13 @@ export default async function RootLayout({
           window.__pwaPrompt=null;
           window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();window.__pwaPrompt=e;});
         `}} />
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-EZVPBZ9BXR"></script>
+        <script dangerouslySetInnerHTML={{__html: `
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-EZVPBZ9BXR');
+        `}} />
       </head>
       <body className={inter.className}>
         <header className="glass-header">
