@@ -41,6 +41,11 @@ export default async function RootLayout({
         <link rel="apple-touch-icon" href="/icon-192x192.png" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <script dangerouslySetInnerHTML={{__html: `
+          if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js').catch(function(){});}
+          window.__pwaPrompt=null;
+          window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();window.__pwaPrompt=e;});
+        `}} />
       </head>
       <body className={inter.className}>
         <header className="glass-header">
