@@ -88,10 +88,11 @@ export default async function RootLayout({
                     <p>Türkiye'nin en gelişmiş, modern ve hızlı fiyat karşılaştırma platformu. Aradığınız ürünün en uygun fiyatını anında bulun.</p>
                 </div>
                 <div className="footer-links">
-                    <h4>Hakkımızda</h4>
-                    <Link href="#">Biz Kimiz?</Link>
-                    <Link href="#">İletişim</Link>
-                    <Link href="#">Kariyer</Link>
+                    <h4>Keşfet</h4>
+                    <Link href="/blog">Blog & Rehberler</Link>
+                    <Link href="/compare">Ürün Karşılaştır</Link>
+                    <Link href="/en-ucuz/iphone">En Ucuz iPhone</Link>
+                    <Link href="/en-ucuz/laptop">En Ucuz Laptop</Link>
                 </div>
                 <div className="footer-links">
                     <h4>Mağazalar İçin</h4>

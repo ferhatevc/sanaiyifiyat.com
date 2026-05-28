@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /api/
+Disallow: /login
+Disallow: /register
+
+Sitemap: https://sanaiyifiyat.com/sitemap.xml
+
+# Sana İyi Fiyat - Türkiye'nin En Akıllı Fiyat Karşılaştırma Platformu
