@@ -51,6 +51,10 @@ export default function MobileMenu() {
                     style={{padding: '14px 16px', color: '#fff', textDecoration: 'none', borderRadius: '8px', fontSize: '16px', display: 'flex', alignItems: 'center', gap: '12px'}}>
                     <i className="fa-solid fa-magnifying-glass" style={{width: '20px'}}></i> Ürün Ara
                 </a>
+                <a href="/liste" onClick={() => setIsOpen(false)}
+                    style={{padding: '14px 16px', color: '#fff', textDecoration: 'none', borderRadius: '8px', fontSize: '16px', display: 'flex', alignItems: 'center', gap: '12px', background: 'linear-gradient(135deg, rgba(229,9,20,0.2), rgba(255,107,53,0.2))', border: '1px solid rgba(229,9,20,0.3)'}}>
+                    <i className="fa-solid fa-cart-shopping" style={{width: '20px', color: '#e50914'}}></i> 🆕 Alışveriş Listesi
+                </a>
 
                 <div style={{borderTop: '1px solid #333', margin: '10px 0'}}></div>
                 <p style={{color: '#666', fontSize: '12px', padding: '0 16px', margin: '5px 0'}}>KATEGORİLER</p>
