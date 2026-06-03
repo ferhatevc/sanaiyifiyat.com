@@ -4,6 +4,13 @@ import { prisma } from "@/lib/prisma";
 export const dynamic = "force-dynamic";
 export const maxDuration = 300;
 
+// Ürün sayısını göster
+export async function GET() {
+  const productCount = await prisma.product.count();
+  const offerCount = await prisma.offer.count();
+  return NextResponse.json({ products: productCount, offers: offerCount });
+}
+
 // Bu endpoint, yerel bilgisayardan scrape edilmiş ürünleri toplu olarak yükler
 export async function POST(request: Request) {
   try {
