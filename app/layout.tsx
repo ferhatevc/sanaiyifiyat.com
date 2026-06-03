@@ -37,6 +37,7 @@ export default async function RootLayout({
   return (
     <html lang="tr">
       <head>
+        <meta name="verify-admitad" content="12669fb7d1" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
         <link rel="apple-touch-icon" href="/icon-192x192.png" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
