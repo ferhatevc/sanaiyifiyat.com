@@ -21,19 +21,17 @@ export default async function GoToVendorPage({ params }: { params: Promise<{ off
     // Gerçek bir sistemde burada "Tıklama (Click)" loglaması yapılır (Analytics).
     // await prisma.clickLog.create({ data: { offerId: offer.id, userId: ... } })
 
-    // Affiliate parametresi ekleme algoritması
+    // Affiliate URL - XML feed'den gelen URL'yi kullan (zaten Admitad tracking içeriyor)
     let affiliateUrl = offer.url;
 
-    // --- TEST ORTAMI İÇİN KESİN ÇÖZÜM ---
-    // Sadece /mock değil, XML içerisindeki /iphone-15 veya /ps5 gibi sahte yollar da mağazalarda 404 veriyor.
-    // Bu yüzden test aşamasında olduğumuz için kullanıcının linkindeki sadece "Domain" kısmını (Örn: https://www.trendyol.com) alıyoruz.
     try {
-        const urlObj = new URL(offer.url);
-        const affiliateParam = "aff_id=SANA_IYI_FIYAT&utm_source=sanaiyifiyat&utm_medium=affiliate";
-        affiliateUrl = `${urlObj.origin}?${affiliateParam}`;
+        // AliExpress/Amazon URL'leri zaten affiliate link içeriyor
+        // Sadece URL geçerli mi kontrol et
+        new URL(offer.url);
+        affiliateUrl = offer.url;
     } catch (error) {
-        // URL hatalıysa direkt anasayfaya at
-        affiliateUrl = "https://www.trendyol.com/?aff_id=SANA_IYI_FIYAT";
+        // URL hatalıysa ana sayfaya yönlendir
+        affiliateUrl = "https://www.aliexpress.com";
     }
 
     return (

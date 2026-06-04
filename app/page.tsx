@@ -88,19 +88,19 @@ export default async function Home() {
                           const cheapestOffer = product.offers?.[0];
                           if (!cheapestOffer) return null;
                           return (
-                          <div className="product-card" key={index}>
+                          <Link href={`/product/${product.id}`} className="product-card" key={index} style={{textDecoration: 'none', color: 'inherit', display: 'block'}}>
                               <div className="discount-badge">En Ucuz</div>
                               <img src={product.image} alt={product.title} className="product-img" />
                               <div className="product-info">
-                                  <span className="product-category">Yeni Ürün</span>
+                                  <span className="product-category">{product.brand || 'Yeni Ürün'}</span>
                                   <h3 className="product-title">{product.title}</h3>
                                   <div className="price-container">
                                       <span className="current-price">{cheapestOffer.priceText}</span>
                                   </div>
                                   <div className="vendor-count">Satıcı: {cheapestOffer.vendor}</div>
-                                  <Link href={`/product/${product.id}`} className="compare-btn" style={{textAlign: 'center', display: 'block', textDecoration: 'none'}}>Fiyatları Kıyasla</Link>
+                                  <span className="compare-btn" style={{textAlign: 'center', display: 'block'}}>Fiyatları Kıyasla</span>
                               </div>
-                          </div>
+                          </Link>
                       )})
                   ) : (
                       <p>Ürünler yükleniyor veya bot çalıştırılmadı...</p>
